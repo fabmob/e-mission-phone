@@ -3,9 +3,9 @@
 angular.module('emission.main', ['emission.main.recent',
                                  'emission.main.diary',
                                  'emission.main.control',
-                                 'emission.main.goals',
+                                 // 'emission.main.goals',
                                  'emission.main.common',
-                                 'emission.main.heatmap',
+                                 // 'emission.main.heatmap',
                                  'emission.main.metrics',
                                  'emission.tripconfirm.posttrip.map',
                                  'emission.services',
@@ -32,15 +32,15 @@ angular.module('emission.main', ['emission.main.recent',
     },
   })
 
-  .state('root.main.heatmap', {
-    url: '/heatmap',
-    views: {
-      'main-heatmap': {
-        templateUrl: 'templates/main-heatmap.html',
-        controller: 'HeatmapCtrl'
-      }
-    }
-  })
+  // .state('root.main.heatmap', {
+  //   url: '/heatmap',
+  //   views: {
+  //     'main-heatmap': {
+  //       templateUrl: 'templates/main-heatmap.html',
+  //       controller: 'HeatmapCtrl'
+  //     }
+  //   }
+  // })
 
   .state('root.main.metrics', {
     url: '/metrics',
@@ -62,15 +62,15 @@ angular.module('emission.main', ['emission.main.recent',
     }
   })
 
-  .state('root.main.goals', {
-    url: '/goals',
-    views: {
-      'main-goals': {
-        templateUrl: 'templates/main-goals.html',
-        controller: 'GoalsCtrl'
-      }
-    }
-  })
+  // .state('root.main.goals', {
+  //   url: '/goals',
+  //   views: {
+  //     'main-goals': {
+  //       templateUrl: 'templates/main-goals.html',
+  //       controller: 'GoalsCtrl'
+  //     }
+  //   }
+  // })
 
   .state('root.main.sensed', {
     url: "/sensed",

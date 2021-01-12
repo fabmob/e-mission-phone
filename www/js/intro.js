@@ -136,7 +136,7 @@ angular.module('emission.intro', ['emission.splash.startprefs',
   };
 
   $scope.disagree = function() {
-    $state.go('root.main.heatmap');
+    // $state.go('root.main.heatmap');
   };
 
   $scope.agree = function() {

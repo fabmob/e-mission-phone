@@ -1,12 +1,19 @@
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
+# Add any directories, files, or patterns you don't want to be tracked by version control
 
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Windows
+Thumbs.db
+**/Thumbs.db
+
+# App
 node_modules/
 platforms/
 plugins/
 www/lib/
 package-hooks/
-.DS_Store
 app-settings.json
 .idea/
 .io-config.json
@@ -18,3 +25,9 @@ www/js/control/sync-settings.js
 www/js/control/transition-notify-settings.js
 config.xml
 package.json
+
+# Tracemob
+GoogleService-Info.plist
+google-services.json
+setup/tracemob/GoogleService-Info.plist
+setup/tracemob/google-services.json
