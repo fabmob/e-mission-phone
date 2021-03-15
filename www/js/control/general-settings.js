@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('emission.main.control',['emission.services',
+                                        'emission.i18n.utils',
                                         'emission.main.control.collection',
                                         'emission.main.control.sync',
                                         'emission.main.control.tnotify',
@@ -17,11 +18,11 @@ angular.module('emission.main.control',['emission.services',
                $ionicPlatform,
                $state, $ionicPopup, $ionicActionSheet, $ionicPopover,
                $rootScope, KVStore, ionicDatePicker,
-               StartPrefs, ControlHelper, EmailHelper,
+               StartPrefs, ControlHelper, EmailHelper, UploadHelper,
                ControlCollectionHelper, ControlSyncHelper,
                ControlTransitionNotifyHelper,
                CarbonDatasetHelper,
-               UpdateCheck,
+               UpdateCheck, i18nUtils,
                CalorieCal, ClientStats, CommHelper, Logger,
                $translate) {
 
@@ -54,10 +55,30 @@ angular.module('emission.main.control',['emission.services',
 
     $scope.carbonDatasetString = $translate.instant('general-settings.carbon-dataset') + ": " + CarbonDatasetHelper.getCurrentCarbonDatasetCode();
 
+    $scope.uploadLog = function () {
+        UploadHelper.uploadFile("loggerDB")
+    };
+
     $scope.emailLog = function () {
         // Passing true, we want to send logs
         EmailHelper.sendEmail("loggerDB")
     };
+
+    $scope.viewPrivacyPolicy = function($event) {
+        // button -> list element -> scroll
+        // const targetEl = $event.currentTarget.parentElement.parentElement;
+        if ($scope.ppp) {
+            $scope.ppp.show($event);
+        } else {
+            i18nUtils.geti18nFileName("templates/", "intro/consent-text", ".html").then((consentFileName) => {
+                $scope.consentTextFile = consentFileName;
+                $ionicPopover.fromTemplateUrl("templates/control/main-consent.html", {scope: $scope}).then((p) => {
+                    $scope.ppp = p;
+                    $scope.ppp.show($event);
+                });
+            }).catch((err) => Logger.displayError("Error while displaying privacy policy", err));
+        }
+    }
 
     $scope.userData = []
     $scope.getUserData = function() {
