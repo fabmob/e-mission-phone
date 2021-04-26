@@ -1,15 +1,26 @@
-<ion-content>
-<div class="intro-title">
-<center><h3>Login via google</h3></center></div>
-
-<div class="intro-text">
-Currently, we only support logging in via google, since they support techniques
-such as two factor authentication for greater security. Participants at UC
-Berkeley can choose to login using either their CalNet ID or a personal gmail
-account.
-<div class="intro-space"></div>
-<button class="button button-block button-balanced" ng-click="login()">Login via Token</button>
-</div>
-
-
+<ion-content class="has-footer">
+    <div class="intro-title">
+        <center>
+            <h4></h4>
+        </center>
+    </div>
+    <div class="intro-text">
+        <h3>Permissions</h3>
+        <p>Nous allons maintenant vous demander des autorisations pour accéder aux données suivantes.</p>
+        <h4>Localisation</h4>
+        <p>TraceMob a besoin de recueillir, qualifier et récupérer vos traces de mobilités afin vous permettre de visualiser l’empreinte carbone de vos déplacements après un nettoyage et une correction de vos traces de mobilités. Depuis que vous utilisez {{platform}} {{osver}}, lorque c'est demandé, {{locationPermExplanation}}.</p>
+        <h4>Autorisation des données en arrière-plan</h4>
+        <p>Votre téléphone limite le fonctionnement des applications en arrière-plan. Cela empêche l'application de suivre votre position ou de l'envoyer vers le serveur. Veuillez activer le fonctionnement en arrière-plan pour cette application avec les instructions suivantes: {{allowBackgroundRestrictions}}.</p>
+    </div>
+    <div class="intro-consent-space"></div>
 </ion-content>
+<ion-footer-bar class="no-bgColor intro-footer">
+    <div class="row" translate-namespace="consent">
+      <div class="col" style="margin-right: 5px">
+          <button class="button button-block button-assertive button-outline consent-button" ng-click="disagree()"><span translate>{{'.button-decline'}}</span></button>
+      </div>
+      <div class="col" style="margin-left: 5px">
+          <button class="button button-block button-positive button-outline consent-button" ng-click="agree()"><span translate>{{'.button-accept'}}</span></button>
+      </div>
+    </div>
+</ion-footer-bar>

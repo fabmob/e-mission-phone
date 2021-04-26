@@ -21,7 +21,7 @@ angular.module('emission.intro', ['emission.splash.startprefs',
 })
 
 .controller('IntroCtrl', function($scope, $state, $window, $ionicSlideBoxDelegate,
-    $ionicPopup, $ionicHistory, ionicToast, $timeout, CommHelper, StartPrefs, UpdateCheck, $translate, i18nUtils) {
+    $ionicPopup, $ionicHistory, ionicToast, $timeout, CommHelper, StartPrefs, UpdateCheck, $translate, i18nUtils, $ionicPlatform) {
 
   $scope.platform = $window.device.platform;
   $scope.osver = $window.device.version.split(".")[0];
@@ -94,19 +94,35 @@ angular.module('emission.intro', ['emission.splash.startprefs',
     });
   };
 
+  $scope.generateRandomToken = function(length) {
+    var randomInts = window.crypto.getRandomValues(new Uint8Array(length * 2));
+    var randomChars = Array.from(randomInts).map((b) => String.fromCharCode(b));
+    var randomString = randomChars.join("");
+    var validRandomString = window.btoa(randomString).replace(/[+/]/g, "");
+    return validRandomString.substring(0, length);
+  }
+
   $scope.disagree = function() {
     // $state.go('root.main.heatmap');
+    $scope.getIntroBox().previous();
   };
 
-  $scope.agree = function() {
-    StartPrefs.markConsented().then(function(response) {
-      $ionicHistory.clearHistory();
-      if ($state.is('root.intro')) {
-        $scope.next();
-      } else {
-        StartPrefs.loadPreferredScreen();
-      }
-    });
+  $scope.agree = function(prominentDisclosure) {
+    if ($ionicPlatform.is('android') && prominentDisclosure === true) {
+      $scope.next();
+    }
+    else {
+      StartPrefs.markConsented().then(function(response) {
+        $scope.randomToken = $scope.generateRandomToken(16);
+        $ionicHistory.clearHistory();
+        if ($state.is('root.intro')) {
+          $scope.loginNew();
+          // $scope.next();
+        } else {
+          StartPrefs.loadPreferredScreen();
+        }
+      });
+    }
   };
 
   $scope.next = function() {
@@ -129,8 +145,12 @@ angular.module('emission.intro', ['emission.splash.startprefs',
       });
   }
 
-  $scope.login = function() {
-    window.cordova.plugins.BEMJWTAuth.signIn().then(function(userEmail) {
+  $scope.loginNew = function() {
+    $scope.login($scope.randomToken);
+  };
+
+  $scope.login = function(token) {
+    window.cordova.plugins.BEMJWTAuth.setPromptedAuthToken(token).then(function(userEmail) {
       // ionicToast.show(message, position, stick, time);
       // $scope.next();
       ionicToast.show(userEmail, 'middle', false, 2500);

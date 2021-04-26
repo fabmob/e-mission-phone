@@ -200,6 +200,8 @@
         "tab": "Label"
     },
 
+    "main-diary": "Journal",
+
     "main-heatmap":{
         "title": "Heatmap",
         "counts" : "Counts",
