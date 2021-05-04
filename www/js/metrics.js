@@ -456,7 +456,7 @@ angular.module('emission.main.metrics',['nvd3',
       $scope.caloriesData.change = $translate.instant('metrics.calorie-data-change');
 
       $scope.carbonData.userCarbon = "0 kg CO₂";
-      $scope.carbonData.aggrCarbon = $translate.instant('metrics.carbon-data-calculating');;
+      $scope.carbonData.aggrCarbon = $translate.instant('metrics.carbon-data-calculating');
       $scope.carbonData.optimalCarbon = "0 kg CO₂";
       $scope.carbonData.worstCarbon = "0 kg CO₂";
       $scope.carbonData.lastWeekUserCarbon = "0 kg CO₂";
@@ -942,7 +942,8 @@ angular.module('emission.main.metrics',['nvd3',
               break;
           }
           if (metric === "median_speed") {
-            data[i].values = Math.round(temp / data[i].values.length  ) + ' ' + unit;
+            // data[i].values = Math.round(temp / data[i].values.length  ) + ' ' + unit;
+            data[i].values = Math.round(temp / data[i].values.length * 3.6) + ' ' + "km/h";
           } else if(metric === "distance" && temp.toString().length > 4){
             data[i].values = Math.round(temp / 1000) + ' ' + "km";
           } else if(metric === "duration" && temp > 60){

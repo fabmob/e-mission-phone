@@ -302,6 +302,7 @@
         "control": {
             "status": "Status",
             "settings": "Settings",
+            "identifier": "Identifier",
             "current-location": "Current location:",
             "start-trip": "Start Trip",
             "stop-trip": "Stop Trip",

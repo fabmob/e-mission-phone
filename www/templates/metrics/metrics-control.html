@@ -4,7 +4,7 @@
     <button side="right" class="button" ng-click="getMetricsHelper()" translate>{{'.get'}}</button>
 </ion-header-bar>
   <ion-content class="padding">
-  <div style="height: 40px; width: 100%; margin-bottom: 5px;"> <!-- query control -->
+  <div style="height: 40px; width: 100%; margin-bottom: 5px;display: none;"> <!-- query control -->
     <div class="metric-basic">
       <div class="metric-current-title hvcenter">{{ uictrl.currentString }}</div>
       <div ng-class="rangeButtonClass()" ng-click="showRange()" translate>{{'.range'}}</div>
@@ -39,10 +39,10 @@
           </div>
         </div>
     </div>
-    <div class="metric-left">
+    <div class="metric-left" style="display: none;">
         <div class="metric-title" translate>{{'.frequency'}}</div>
     </div>
-    <div class="metric-right">
+    <div class="metric-right" style="display: none;">
       <div class="metric-freq-button hvcenter" ng-click="changePandaFreq()">{{selectCtrl.pandaFreqString}}</div>
     </div>
   </div>
