@@ -47,7 +47,7 @@ angular.module('emission.main.common.services', ['emission.plugin.logger'])
      * Returns the common trip corresponding to the specified tripId
      */
     commonGraph.trip2Common = function(tripId) {
-        if (angular.isDefined(commonGraph.data) && 
+        if (angular.isDefined(commonGraph.data) &&
             angular.isDefined(commonGraph.data.trip2CommonMap)) {
           return commonGraph.data.trip2CommonMap[tripId];
         } else {
@@ -251,6 +251,34 @@ angular.module('emission.main.common.services', ['emission.plugin.logger'])
           break;
       }
     };
+
+    commonGraph.getDisplayNameFrance = function (obj) {
+      var url = "https://api-adresse.data.gouv.fr/reverse/?lon="+  obj.geometry.coordinates[0] +"&lat="+ obj.geometry.coordinates[1]
+      $http.get(url).then(function (geojson) {
+          if (angular.isDefined(geojson.data.features[0].properties)) {
+              console.log("Found data with api-adresse.data.gouv.fr: " + JSON.stringify(geojson.data.features[0].properties))
+              obj.properties.display_name = geojson.data.features[0].properties.name + ", " + geojson.data.features[0].properties.city;
+          } else {
+              console.log("Not enough data in api-adresse.data.gouv.fr, I will try nominatim");
+              Promise.resolve(CommonGraph.getDisplayName('place', $scope.settings.obj));
+          }
+      }).catch(function (err) {
+          console.log(url + " returns " + err);
+          Promise.resolve(commonGraph.getDisplayName('place', $scope.settings.obj));
+      });
+    }
+
+    commonGraph.getFranceGeoJSON = function () {
+      return new Promise(function (resolve, reject) {
+        $http.get("json/france.geojson").then(function (franceGeoJSON) {
+          console.log("france.geojson found, I will try to use api-adresse.data.gouv.fr");
+          resolve(turf.multiPolygon(franceGeoJSON.data.geometry.coordinates));
+        }).catch(function (err) {
+          Logger.displayError("No france.geojson, I will always use Nominatim", err);
+          reject(null);
+        });
+      });
+    }
 
     var getFormattedDuration = function(duration_in_secs) {
       return moment.duration(duration_in_secs * 1000).humanize()

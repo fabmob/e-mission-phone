@@ -33,7 +33,7 @@
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
     <platform name="ios">
-        <hook src="hooks/after_platform_add/ios/ios_copy_locales.js" type="after_platform_add" />
+        <hook src="hooks/after_platform_add/ios/ios_copy_locales.js" type="before_prepare" />
         <resource-file src="GoogleService-Info.plist" />
         <preference name="WKWebViewOnly" value="true" />
         <preference name="WKSuspendInBackground" value="false" />
@@ -48,6 +48,9 @@
         <hook src="hooks/before_build/android/android_set_provider.js" type="before_build" />
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
             <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
         </config-file>
     </platform>
     <icon src="resources/icon.png" />

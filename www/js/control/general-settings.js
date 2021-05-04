@@ -24,7 +24,12 @@ angular.module('emission.main.control',['emission.services',
                CarbonDatasetHelper,
                UpdateCheck, i18nUtils,
                CalorieCal, ClientStats, CommHelper, Logger,
-               $translate) {
+               $translate, CommonGraph) {
+
+    $scope.uictrl = {
+        startButton: true,
+        stopButton: false
+    }
 
     var datepickerObject = {
       todayLabel: $translate.instant('list-datepicker-today'),  //Optional
@@ -213,23 +218,28 @@ angular.module('emission.main.control',['emission.services',
         });
     }
 
-    $scope.nukeUserCache = function() {
-        var nukeChoiceActions = [{text: $translate.instant('general-settings.nuke-ui-state-only'),
-                                  action: KVStore.clearOnlyLocal},
-                                 {text: $translate.instant('general-settings.nuke-native-cache-only'),
-                                  action: KVStore.clearOnlyNative},
-                                 {text: $translate.instant('general-settings.nuke-everything'),
-                                  action: KVStore.clearAll}];
+    $scope.linkWithCozyCloud = function () {
+        // TODO
+    }
 
-        $ionicActionSheet.show({
-            titleText: $translate.instant('general-settings.clear-data'),
-            cancelText: $translate.instant('general-settings.cancel'),
-            buttons: nukeChoiceActions,
-            buttonClicked: function(index, button) {
-                button.action();
-                return true;
-            }
-        });
+    $scope.nukeUserCache = function() {
+        // TODO
+        // var nukeChoiceActions = [{text: $translate.instant('general-settings.nuke-ui-state-only'),
+        //                           action: KVStore.clearOnlyLocal},
+        //                          {text: $translate.instant('general-settings.nuke-native-cache-only'),
+        //                           action: KVStore.clearOnlyNative},
+        //                          {text: $translate.instant('general-settings.nuke-everything'),
+        //                           action: KVStore.clearAll}];
+
+        // $ionicActionSheet.show({
+        //     titleText: $translate.instant('general-settings.clear-data'),
+        //     cancelText: $translate.instant('general-settings.cancel'),
+        //     buttons: nukeChoiceActions,
+        //     buttonClicked: function(index, button) {
+        //         button.action();
+        //         return true;
+        //     }
+        // });
     }
 
     $scope.testTripEndNotify = function() {
@@ -297,6 +307,10 @@ angular.module('emission.main.control',['emission.services',
         $scope.settings.tnotify = {};
         $scope.settings.auth = {};
         $scope.settings.connect = {};
+        $scope.settings.status = {};
+        $scope.settings.obj = {
+            properties: { display_name : $translate.instant('tracemob.general-settings.retrieving-location') }
+        };
         $scope.settings.channel = function(newName) {
           return arguments.length ? (UpdateCheck.setChannel(newName)) : $scope.settings.storedChannel;
         };
@@ -317,6 +331,12 @@ angular.module('emission.main.control',['emission.services',
             });
         });
         $scope.getUserData();
+
+        $scope.getLocationStatus().then(function (locationStatus) {
+            $scope.getCurrentPosition(locationStatus)
+        });
+        $scope.getWiFiStatus();
+        $scope.settings.status.connection = $scope.getConnectionState();
     };
 
     $scope.returnToIntro = function() {
@@ -474,9 +494,10 @@ angular.module('emission.main.control',['emission.services',
         return ($scope.dataExpanded)? "icon ion-ios-arrow-up" : "icon ion-ios-arrow-down";
     }
     $scope.eraseUserData = function() {
-        CalorieCal.delete().then(function() {
-            $ionicPopup.alert({template: $translate.instant('general-settings.user-data-erased')});
-        });
+        $ionicPopup.alert({template: $translate.instant('tracemob.general-settings.user-data-erase')});
+        // CalorieCal.delete().then(function() {
+        //     $ionicPopup.alert({template: $translate.instant('general-settings.user-data-erased')});
+        // });
     }
     $scope.parseState = function(state) {
         if (state) {
@@ -584,4 +605,202 @@ angular.module('emission.main.control',['emission.services',
         });
     }
 
+    $scope.getLocationStatus = function () {
+        return new Promise(function (resolve, reject) {
+            cordova.plugins.diagnostic.isLocationAvailable(function (isLocationAvailable) {
+                console.log("Location status is " + (isLocationAvailable ? "enabled" : "disabled"));
+                resolve($scope.settings.status.location = isLocationAvailable ?
+                    $translate.instant('tracemob.general-settings.location.enabled') :
+                    $translate.instant('tracemob.general-settings.location.disabled'));
+            }, function (error) {
+                Logger.displayError("Error reading location status ", error);
+                reject($scope.settings.status.location = false);
+            });
+        });
+    };
+
+    $scope.getWiFiStatus = function () {
+        return new Promise(function (resolve, reject) {
+            cordova.plugins.diagnostic.isWifiEnabled(function (isWifiEnabled) {
+                console.log("Wi-Fi status is " + (isWifiEnabled ? "enabled" : "disabled"));
+                resolve($scope.settings.status.wifi = isWifiEnabled ?
+                    $translate.instant('tracemob.general-settings.wifi.enabled') :
+                    $translate.instant('tracemob.general-settings.wifi.disabled'));
+            }, function (error) {
+                Logger.displayError("Error reading Wi-Fi status ", error);
+                reject($scope.settings.status.wifi = false);
+            });
+        });
+    };
+
+    $scope.getConnectionState = function () {
+        switch (navigator.connection.type) {
+            case "cell":
+                return $translate.instant('tracemob.general-settings.network.cell');
+            case "2g":
+                return "2G";
+            case "3g":
+                return "3G";
+            case "4g":
+                return "4G";
+            case "wifi":
+                return "Wi-Fi";
+            case "none":
+                return $translate.instant('tracemob.general-settings.network.none');
+            default:
+                return $translate.instant('tracemob.general-settings.network.unknown');
+        }
+    }
+
+    $scope.wifiIconClass = function() {
+        return $scope.settings.status.wifi == $translate.instant('tracemob.general-settings.wifi.enabled') ? "balanced" : "assertive";
+    }
+
+    $scope.locationIconClass = function() {
+        return $scope.settings.status.location == $translate.instant('tracemob.general-settings.location.enabled') ? "balanced" : "assertive";
+    }
+
+    $scope.connectionIconClass = function () {
+        if ($scope.settings.status.connection == "4G" || $scope.settings.status.connection == "Wi-Fi") {
+            return "balanced";
+        }
+        if ($scope.settings.status.connection == "3G") {
+            return "energized";
+        }
+        return "assertive";
+    }
+
+    $scope.parseStatetoUser = function(state) {
+        if (state) {
+            if ($scope.isAndroid()) {
+                switch (state.substring(12)) {
+                    case "ongoing_trip":
+                        $scope.showStopButton();
+                        return $translate.instant('tracemob.general-settings.states.ongoing-trip');
+                    case "start":
+                        $scope.showStartButton();
+                        return $translate.instant('tracemob.general-settings.states.start');
+                    case "tracking_stopped":
+                        $scope.showStartButton();
+                        return $translate.instant('tracemob.general-settings.states.tracking-stopped');
+                    case "waiting_for_trip_start":
+                        $scope.showStartButton();
+                        return $translate.instant('tracemob.general-settings.states.waiting-for-trip-start');
+                    default:
+                        return $translate.instant('tracemob.general-settings.states.unknown');
+                }
+            } else if ($scope.isIOS()) {
+                switch (state.substring(6)) {
+                    case "ONGOING_TRIP":
+                        $scope.showStopButton();
+                        return $translate.instant('tracemob.general-settings.states.ongoing-trip');
+                    case "START":
+                        $scope.showStartButton();
+                        return $translate.instant('tracemob.general-settings.states.start');
+                    case "TRACKING_STOPPED":
+                        $scope.showStartButton();
+                        return $translate.instant('tracemob.general-settings.states.tracking-stopped');
+                    case "WAITING_FOR_TRIP_START":
+                        $scope.showStartButton();
+                        return $translate.instant('tracemob.general-settings.states.waiting-for-trip-start');
+                    default:
+                        return $translate.instant('tracemob.general-settings.states.unknown');
+                }
+            }
+        }
+    }
+
+    $scope.showStopButton = function () {
+        $scope.uictrl.stopButton = true;
+        $scope.uictrl.startButton = false;
+    }
+
+    $scope.showStartButton = function () {
+        $scope.uictrl.stopButton = false;
+        $scope.uictrl.startButton = true;
+    }
+
+    $scope.endForce = function () {
+        $ionicPopup.confirm({
+            title: $translate.instant('tracemob.general-settings.confirm-popup.warning'),
+            template: $translate.instant('tracemob.general-settings.confirm-popup.forcing-end-trip-warning'),
+            cancelText: $translate.instant('tracemob.general-settings.confirm-popup.cancel'),
+            okText: $translate.instant('tracemob.general-settings.confirm-popup.confirm')
+        }).then(function (response) {
+            if (response) {
+                console.log("User forced stop trip.");
+                ControlCollectionHelper.forceTransition('STOPPED_MOVING');
+            } else {
+                console.log("User did not confirm the force stop trip");
+            }
+        });
+    }
+
+    $scope.startForce = function () {
+        if (!$scope.settings.collect.trackingOn) {
+            $ionicPopup.alert({
+                title: $translate.instant('tracemob.general-settings.alert-tracking.please-enable-tracking'),
+                template: $translate.instant('tracemob.general-settings.alert-tracking.start-trip-without-tracking')
+            })
+        } else {
+            $ionicPopup.confirm({
+                title: $translate.instant('tracemob.general-settings.confirm-popup.warning'),
+                template: $translate.instant('tracemob.general-settings.confirm-popup.forcing-start-trip-warning'),
+                cancelText: $translate.instant('tracemob.general-settings.confirm-popup.cancel'),
+                okText: $translate.instant('tracemob.general-settings.confirm-popup.confirm')
+            }).then(function (response) {
+                if (response) {
+                    console.log("User forced start trip.");
+                    ControlCollectionHelper.forceTransition('EXITED_GEOFENCE');
+                } else {
+                    console.log("User did not confirm the force start trip");
+                }
+            });
+        }
+    }
+
+    $scope.getCurrentPosition = function (locationStatus) {
+        if (locationStatus == $translate.instant('tracemob.general-settings.location.enabled')) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                $scope.settings.obj = {
+                    geometry: {
+                        coordinates: [position.coords.longitude, position.coords.latitude]
+                    },
+                    properties: {
+                        display_name: ""
+                    }
+                };
+                if (isInFrance($scope.settings.obj.geometry.coordinates)) {
+                    console.log("User is in France, I will ask the address to official API");
+                    Promise.resolve(CommonGraph.getDisplayNameFrance($scope.settings.obj));
+                } else {
+                    console.log("User is not in France, I will use nominatim");
+                    Promise.resolve(CommonGraph.getDisplayName('place', $scope.settings.obj));
+                }
+            }, function(error) {
+                Logger.displayError("Error while reading current position: ", error);
+            });
+        } else {
+            console.log("Location is disabled, cannot retrieve user's current possition.");
+            $scope.settings.obj = {
+                properties: {
+                    display_name: $translate.instant('tracemob.general-settings.cannot-retrieve-position-location-disabled')
+                }
+            };
+        }
+    }
+
+    var isInFrance = function (point) {
+        if ($scope.france != null) {
+            return turf.booleanPointInPolygon(turf.point([point[0], point[1]]), $scope.france);
+        } else {
+            return false;
+        }
+    }
+
+    CommonGraph.getFranceGeoJSON().then(function (result) {
+        $scope.france = result;
+    }, function (err) {
+        $scope.france = err;
+    });
 });

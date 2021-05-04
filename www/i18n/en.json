@@ -200,8 +200,6 @@
         "tab": "Label"
     },
 
-    "main-diary": "Journal",
-
     "main-heatmap":{
         "title": "Heatmap",
         "counts" : "Counts",
@@ -296,8 +294,56 @@
         "download-not-now": "Not now",
         "download-apply": "Apply"
     },
-    "sensor_explanation":{
-        "button-accept": "OK",
-        "button-decline": "Stop"
+    "tracemob": {
+        "consent":{
+            "button-accept": "Accept",
+            "button-decline": "Refuse"
+        },
+        "control": {
+            "status": "Status",
+            "settings": "Settings",
+            "current-location": "Current location:",
+            "start-trip": "Start Trip",
+            "stop-trip": "Stop Trip",
+            "sync-to-cozy-cloud": "Synchronize to Cozy Cloud",
+            "erase-data": "Delete my account and my data",
+            "dev-zone": "Technical zone"
+        },
+        "general-settings": {
+            "states": {
+                "ongoing-trip": "Ongoing Trip",
+                "start": "Start",
+                "tracking-stopped": "Tracking Stopped",
+                "waiting-for-trip-start": "Waiting for trip start",
+                "unknown": "Unknown"
+            },
+            "wifi": {
+                "enabled": "Enabled",
+                "disabled": "Disabled"
+            },
+            "location": {
+                "enabled": "Enabled",
+                "disabled": "Disabled"
+            },
+            "network": {
+                "cell": "Cell",
+                "unknown": "Unknown",
+                "none": "None"
+            },
+            "alert-tracking": {
+                "please-enable-tracking": "Please enable Tracking",
+                "start-trip-without-tracking": "You tried to start a trip without enabling the tracking. Please enable it before trying again."
+            },
+            "confirm-popup": {
+                "warning": "Warning",
+                "forcing-end-trip-warning": "Forcing the end of the trip can cause bugs. Do you really want to stop the trip?",
+                "forcing-start-trip-warning": "Forcing the start trip can cause bugs. Do you really want to start a trip?",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            },
+            "retrieving-location": "Retrieving location...",
+            "cannot-retrieve-position-location-disabled": "Location is disabled, cannot retrieve your position.",
+            "user-data-erase": "Your data will be automatically deleted 30 days after you delete the app from your phone. Your data will no longer be recoverable once the application is deleted."
+        }
     }
 }

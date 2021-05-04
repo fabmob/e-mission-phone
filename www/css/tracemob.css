@@ -1,15 +1,15 @@
 :root {
-  --fabmob-color-blue-a: #375c9d;
-  --fabmob-color-blue-a-2: #375c9d;
-  --fabmob-color-blue-f: #375c9d;
-  --fabmob-color-green-b: #ececec;
-  --fabmob-color-yellow-o: #ffe000;
+  --tracemob-color-blue-a: #375c9d;
+  --tracemob-color-blue-a-2: #375c9d;
+  --tracemob-color-blue-f: #375c9d;
+  --tracemob-color-green-b: #ececec;
+  --tracemob-color-yellow-o: #ffe000;
 }
 
 /* ========== ========== ========== ========== ========== */
 /* ionic.css & style.css */
 /* ========== ========== ========== ========== ========== */
-/* --fabmob-color-blue-a */
+/* --tracemob-color-blue-a */
 .button.ng-binding.button-positive,
 .button.ng-binding.button-assertive,
 .button.button-light-green,
@@ -42,7 +42,7 @@ ion-modal-view > ion-header-bar > button,
 .button.button-positive.button-outline.active,
 .button.button-positive.button-outline.activated,
 .button.button-balanced {
-  background-color: var(--fabmob-color-blue-a) !important;
+  background-color: var(--tracemob-color-blue-a) !important;
 }
 
 .selected_date_full.ng-binding,
@@ -78,32 +78,32 @@ ion-modal-view > ion-header-bar > button,
 .date-picker-button,
 .bar-stable .button,
 .button.button-positive.button-outline {
-  color: var(--fabmob-color-blue-a) !important;
+  color: var(--tracemob-color-blue-a) !important;
 }
 
 .common-detail-item {
-  border-left-color: var(--fabmob-color-blue-a) !important;
+  border-left-color: var(--tracemob-color-blue-a) !important;
 }
 
 .button.button-light-green.button-outline,
 .toggle input:checked + .track,
 .toggle-on-ourcolor-bg,
 .button.button-positive.button-outline {
-  border-color: var(--fabmob-color-blue-a) !important;
+  border-color: var(--tracemob-color-blue-a) !important;
 }
 
 .list-col-left,
 .list-col-right {
   border-bottom-width: 1.5px !important;
-  border-bottom-color: var(--fabmob-color-blue-a) !important;
+  border-bottom-color: var(--tracemob-color-blue-a) !important;
 }
 
 .list-col-left {
   border-right-width: 1.5px !important;
-  border-right-color: var(--fabmob-color-blue-a) !important;
+  border-right-color: var(--tracemob-color-blue-a) !important;
 }
 
-/* --fabmob-color-blue-a-2 */
+/* --tracemob-color-blue-a-2 */
 #dashboard-calorie.card,
 #dashboard-bottom.card,
 #arrow-color,
@@ -114,39 +114,33 @@ ion-modal-view > ion-header-bar > button,
 .metric-summary-title,
 .metric-summary-content,
 .metric-summary-option-button {
-  color: var(--fabmob-color-blue-a-2) !important;
+  color: var(--tracemob-color-blue-a-2) !important;
 }
 
 h4.dashboard-headers {
-  background: var(--fabmob-color-blue-a-2) !important;
+  background: var(--tracemob-color-blue-a-2) !important;
 }
 
 .dashboard-list {
-  background-color: var(--fabmob-color-blue-a-2) !important;
+  background-color: var(--tracemob-color-blue-a-2) !important;
 }
 
-/* --fabmob-color-blue-f */
+/* --tracemob-color-blue-f */
 .button.button-balanced.active,
 .button.button-balanced.activated {
-  background-color: var(--fabmob-color-blue-f) !important;
+  background-color: var(--tracemob-color-blue-f) !important;
 }
 
-/* --fabmob-color-green-b */
+/* --tracemob-color-green-b */
 .ion-view-background,
 [ng-class="ion-view-background"],
 ion-modal-view {
-  background-color: var(--fabmob-color-green-b) !important;
-}
-
-/* --fabmob-color-green-o */
-.fabmob-diary-list-left-timeline {
-  border-left-width: 1.5px !important;
-  border-left-color: var(--fabmob-color-yellow-o) !important;
+  background-color: var(--tracemob-color-green-b) !important;
 }
 
 /* white */
 .toggle input + .track {
-  border-color: var(--fabmob-color-blue-a) !important;
+  border-color: var(--tracemob-color-blue-a) !important;
   background-color: white !important;
 }
 
@@ -219,91 +213,40 @@ ion-modal-view > ion-header-bar > button,
 }
 
 /* ========== ========== ========== ========== ========== */
-/* diary-list-fabmob.html */
-/* ========== ========== ========== ========== ========== */
-.diary-list-fabmob-mode,
-.diary-list-fabmob-mode-value {
-  margin-left: 0.7em !important;
-  margin-right: 0.7em !important;
-  margin-top: 0.2em !important;
-}
-.diary-list-fabmob-mode {
-  font-size: 0.9em !important;
-}
-.diary-list-fabmob-mode-value {
-  font-size: 0.6em !important;
-}
-
-/* ========== ========== ========== ========== ========== */
-/* diary-detail-fabmob.html */
-/* ========== ========== ========== ========== ========== */
-.diary-detail-fabmob-title {
-  font-size: 1.1em !important;
-  margin-bottom: 0 !important;
-}
-
-.diary-detail-fabmob-mode,
-.diary-detail-fabmob-mode-value {
-  margin-left: 0.7em !important;
-  margin-right: 0.7em !important;
-  margin-top: 0.2em !important;
-  color: black;
-}
-.diary-detail-fabmob-mode {
-  font-size: 15px !important;
-}
-.diary-detail-fabmob-mode-value {
-  font-size: 10px !important;
-}
-.diary-detail-fabmob-title,
-#sectionList i,
-.diary-detail-fabmob-fixmap {
-  color: var(--fabmob-color-blue-a) !important;
-}
-.diary-detail-fabmob-fixmap {
-  padding-left: 0 !important;
-  margin-left: 16px !important;
-}
-.diary-detail-fabmob-refresh {
-  padding-right: 0 !important;
-  margin-right: 16px !important;
-}
-
-.control-list-item {
-  height: 55px !important;
-}
-/* ========== ========== ========== ========== ========== */
 /* popup datepicker */
 /* ========== ========== ========== ========== ========== */
 .ionic_datepicker_popup .popup-body .selected_date_full,
 .ionic_datepicker_popup .popup-buttons button,
 .ionic_datepicker_popup .selected_date {
-  background-color: var(--fabmob-color-blue-a) !important;
+  background-color: var(--tracemob-color-blue-a) !important;
 }
 .ionic_datepicker_popup .popup-body .selected_date_full {
   color: white !important;
 }
 .ionic_datepicker_popup .popup-body .month_select,
 .ionic_datepicker_popup .popup-body .year_select {
-  border-bottom: var(--fabmob-color-blue-a) !important;
+  border-bottom: var(--tracemob-color-blue-a) !important;
 }
 .ionic_datepicker_popup .popup-body .button-clear,
 .ionic_datepicker_popup .popup-body .month_select:after,
 .ionic_datepicker_popup .popup-body .year_select:after {
-  color: var(--fabmob-color-blue-a) !important;
+  color: var(--tracemob-color-blue-a) !important;
 }
 .ionic_datepicker_popup .today {
-  border-color: var(--fabmob-color-blue-a) !important;
+  border-color: var(--tracemob-color-blue-a) !important;
 }
 
 /* ========== ========== ========== ========== ========== */
 /* main-control.html */
 /* ========== ========== ========== ========== ========== */
 .control-icon-button {
-  background-color: var(--fabmob-color-yellow-o) !important;
+  background-color: var(--tracemob-color-yellow-o) !important;
 }
 .control-icon-button > i {
-  color: var(--fabmob-color-blue-a) !important;
+  color: var(--tracemob-color-blue-a) !important;
+}
+.control-list-item.control-list-item-large {
+  height: 60px;
 }
 
 /* ========== ========== ========== ========== ========== */
@@ -356,7 +299,7 @@ ion-modal-view > ion-header-bar > button,
 /* ========== ========== ========== ========== ========== */
 #card-currently-displaying {
   background: #fff;
-  color: var(--fabmob-color-blue-a);
+  color: var(--tracemob-color-blue-a);
   border-radius: 5px;
   display: block;
   margin: 10px;
@@ -371,7 +314,7 @@ ion-modal-view > ion-header-bar > button,
 
 h4.currently-displaying-header{
   color: #fff;
-  background: var(--fabmob-color-blue-a);
+  background: var(--tracemob-color-blue-a);
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: -1px;
@@ -385,7 +328,7 @@ h4.currently-displaying-header{
 /* ========== ========== ========== ========== ========== */
 .change-data-button {
   float: right;
-  color: var(--fabmob-color-blue-a);
+  color: var(--tracemob-color-blue-a);
   background-color: white;
   height: 20px;
   border-radius: 5px;
