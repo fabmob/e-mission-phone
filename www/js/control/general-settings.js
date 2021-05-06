@@ -75,7 +75,7 @@ angular.module('emission.main.control',['emission.services',
         if ($scope.ppp) {
             $scope.ppp.show($event);
         } else {
-            i18nUtils.geti18nFileName("templates/", "intro/consent-text-all", ".html").then((consentFileName) => {
+            i18nUtils.geti18nFileName("templates/", "intro/sensor_explanation-text", ".html").then((consentFileName) => {
                 $scope.consentTextFile = consentFileName;
                 $ionicPopover.fromTemplateUrl("templates/control/main-consent.html", {scope: $scope}).then((p) => {
                     $scope.ppp = p;
@@ -803,4 +803,10 @@ angular.module('emission.main.control',['emission.services',
     }, function (err) {
         $scope.france = err;
     });
+
+
+    $scope.linkWithCozyCloud = function () {
+        console.log('linkWithCozyCloud');
+        // cozyLoginPage();
+    }
 });
