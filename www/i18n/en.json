@@ -346,6 +346,34 @@
             "retrieving-location": "Retrieving location...",
             "cannot-retrieve-position-location-disabled": "Location is disabled, cannot retrieve your position.",
             "user-data-erase": "Your data will be automatically deleted 30 days after you delete the app from your phone. Your data will no longer be recoverable once the application is deleted."
+        },
+        "main-metrics": {
+            "to": "to",
+            "ok": "OK"
+        },
+        "metrics": {
+            "distance": "Distances",
+            "trips": "Trips",
+            "duration": "Durations",
+            "median-speed": "Median Speeds",
+            "modes": {
+                "AIR_OR_HSR": "Air or HSR",
+                "BICYCLING": "Bike",
+                "BUS": "Bus",
+                "CAR": "Car",
+                "IN_VEHICLE": "In vehicle",
+                "LIGHT_RAIL": "Light rail",
+                "ON_FOOT": "On foot",
+                "SUBWAY": "Subway",
+                "TRAIN": "Train",
+                "TRAM": "Tram",
+                "UNKNOWN": "Unknown",
+                "WALKING": "Walking"
+            }
+        },
+        "diary": {
+            "select-mode-scroll": "👇 Scroll for more 👇",
+            "select-purpose-scroll": "👇 Scroll for more 👇"
         }
     }
 }

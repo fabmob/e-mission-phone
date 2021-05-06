@@ -1,7 +1,7 @@
 <ion-view view-title="{{'main-metrics.dashboard' | translate}}" class="ion-view-background" translate-namespace="main-metrics">
   <ion-nav-bar class="bar-stable">
   </ion-nav-bar>
-<!--   <ion-nav-buttons side="primary">
+  <!-- <ion-nav-buttons side="primary">
       <button class="button button-icon" ng-click="share()">
         <i class="icon ion-share"></i>
       </button>
@@ -12,19 +12,35 @@
       </button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <div style="height: 0; width: 100%; padding: 10px;" ng-if="uictrl.showVis">
-<!--       <div class="metric-half">
+    <!-- <div style="height: 0; width: 100%; padding: 10px;" ng-if="uictrl.showVis">
+      <div class="metric-half">
         <div ng-class="summaryButtonClass()" ng-click="showSummary()" translate>{{'.summary'}}</div>
         <div ng-class="chartButtonClass()" ng-click="showChart()" translate>{{'.chart'}}</div>
-      </div> -->
+      </div>
     </div>
-    <!-- <div ng-if="uictrl.showChart" style="width:50%; float:right; padding-top: 10px;">
+    <div ng-if="uictrl.showChart" style="width:50%; float:right; padding-top: 10px;">
       <div class="metric-change-data-button hvcenter" ng-click="openModal()" translate>{{'.change-data'}}</div>
     </div> -->
-    <div ng-if="uictrl.showSummary" style="width:100%; float:right;">
+    <div ng-if="uictrl.showRange" class="tracemob-main-date-range">
+        <button id="date-picker-button" ng-click="pickFromDay()">
+          <div class="metric-datepicker">
+            {{datepickerObjFrom.inputDate | date:datepickerObjFrom.dateFormat}}
+            <i class="ion-ios-calendar-outline" style="font-size: 16px !important; margin-left: 4px !important;"></i>
+          </div>
+        </button>
+        <div translate>{{'tracemob.main-metrics.to'}}</div>
+        <button id="date-picker-button" ng-click="pickToDay()">
+          <div class="metric-datepicker">
+            {{datepickerObjTo.inputDate | date:datepickerObjTo.dateFormat}}
+            <i class="ion-ios-calendar-outline" style="font-size: 16px !important; margin-left: 4px !important;"></i>
+          </div>
+        </button>
+        <button id="get-metrics-helper-button" class="button" ng-click="getMetricsHelper()" translate>{{'tracemob.main-metrics.ok'}}</button>
+    </div>
+    <!-- <div ng-if="uictrl.showSummary" style="width:100%; float:right;">
       <div class="metric-change-data-button hvcenter" ng-click="openModal()" translate>{{'.change-data'}}</div>
     </div>
-    <!-- <div ng-if="uictrl.showChart" style="width:50%;float:right; padding-top: 10px">
+    <div ng-if="uictrl.showChart" style="width:50%;float:right; padding-top: 10px">
       <div class="metric-second-half">
           <i class="icon ion-ios-person metric-icon"></i>
           <label ng-click="toggle()" class="toggle metric-me-toggle">
@@ -58,25 +74,25 @@
               <div id="green-leaf" class="icon ion-leaf">
               </div>
             </div>
-              <h4 class="dashboard-headers" translate>{{'.footprint'}}</h4>
-              <div ng-if="uictrl.showContent">
-                <div ng-class="currentQueryForCarbon()">
-                  <div class="user-carbon">{{carbonData.userCarbon}}</div>
-                  <div ng-if="uictrl.current == 'Last week'">
-                    <div id="arrow-color" ng-if="carbonUp" class="icon ion-arrow-up-a"></div>
-                    <div id="arrow-color" ng-if="carbonDown" class="icon ion-arrow-down-a"></div>
-                    <div class="percentage-change">{{carbonData.changeInPercentage}}{{carbonData.change}}</div>
-                  </div>
+            <h4 class="dashboard-headers" translate>{{'.footprint'}}</h4>
+            <div ng-if="uictrl.showContent">
+              <div ng-class="currentQueryForCarbon()">
+                <div class="user-carbon">{{carbonData.userCarbon}}</div>
+                <div ng-if="uictrl.current == 'Last week'">
+                  <div id="arrow-color" ng-if="carbonUp" class="icon ion-arrow-up-a"></div>
+                  <div id="arrow-color" ng-if="carbonDown" class="icon ion-arrow-down-a"></div>
+                  <div class="percentage-change">{{carbonData.changeInPercentage}}{{carbonData.change}}</div>
                 </div>
               </div>
-              <!-- <div style="margin-top: 110px;">
-                <div class="card dashboard-list"><b translate>{{'.optimal'}}</b> {{carbonData.optimalCarbon}}</div>
-                <div class="card dashboard-list"><b translate>{{'.average'}}</b> {{carbonData.aggrCarbon}}</div>
-                <div class="card dashboard-list"><b translate>{{'.worst'}}</b> {{carbonData.worstCarbon}}</div>
-                <div class="card dashboard-list"><b translate>{{'.lastweek'}}</b> {{carbonData.lastWeekUserCarbon}}</div>
-                <div class="card dashboard-list"><b>CA 2035:</b> {{carbonData.ca2035}}</div>
-                <div class="card dashboard-list"><b>CA 2050:</b> {{carbonData.ca2050}}</div>
-              </div> -->
+            </div>
+            <!-- <div style="margin-top: 110px;">
+              <div class="card dashboard-list"><b translate>{{'.optimal'}}</b> {{carbonData.optimalCarbon}}</div>
+              <div class="card dashboard-list"><b translate>{{'.average'}}</b> {{carbonData.aggrCarbon}}</div>
+              <div class="card dashboard-list"><b translate>{{'.worst'}}</b> {{carbonData.worstCarbon}}</div>
+              <div class="card dashboard-list"><b translate>{{'.lastweek'}}</b> {{carbonData.lastWeekUserCarbon}}</div>
+              <div class="card dashboard-list"><b>CA 2035:</b> {{carbonData.ca2035}}</div>
+              <div class="card dashboard-list"><b>CA 2050:</b> {{carbonData.ca2050}}</div>
+            </div> -->
           </div>
           <!-- <div id="dashboard-first-demo" ng-click="extendFootprintCard()" class="arrow-position">
             <i ng-class="checkFootprintCardExpanded()"></i>
@@ -218,7 +234,7 @@
             </div>
           </ion-slide>
         </ion-slide-box>
-        </div>
       </div>
+    </div>
   </ion-content>
 </ion-view>

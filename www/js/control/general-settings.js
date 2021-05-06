@@ -44,7 +44,7 @@ angular.module('emission.main.control',['emission.services',
       inputDate: moment().subtract(1, 'week').toDate(),  //Optional
       from: new Date(2015, 1, 1),
       to: new Date(),
-      mondayFirst: true,  //Optional
+      mondayFirst: moment().isoWeekday('Monday').day() === 0,  //Optional
       templateType: 'popup', //Optional
       showTodayButton: 'true', //Optional
       modalHeaderColor: 'bar-positive', //Optional

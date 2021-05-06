@@ -423,6 +423,10 @@ ul.ul-circle > li:before {
   height: 35px;
 }
 
+#dashboard-footprint.card {
+  margin-top: 0;
+}
+
 .small-footprint-card {
   height: 134px !important;
 }
@@ -435,4 +439,30 @@ ul.ul-circle > li:before {
 }
 .user-calorie-no-percentage {
   padding-bottom: 30px;
+}
+
+.tracemob-main-date-range {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 15px;
+}
+.tracemob-main-date-range > * {
+  display: flex;
+  padding: 0;
+}
+
+.tracemob-main-date-range > div {
+  padding: 0;
+}
+#get-metrics-helper-button {
+  background: var(--tracemob-color-blue-a);
+  color: white;
+  min-width: auto;
+  min-height: auto;
+  height: 35px;
+  width: 35px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
 }

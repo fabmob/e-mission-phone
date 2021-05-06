@@ -390,7 +390,7 @@ angular.module('emission.main.metrics',['nvd3',
           lastTwoWeeksQuery = false; // Only get last week's data once
         } else {
           var tempFrom = moment2Timestamp($scope.selectCtrl.fromDateTimestamp);
-          var tempTo = moment2Timestamp($scope.selectCtrl.toDateTimestamp);
+          var tempTo = moment2Timestamp($scope.selectCtrl.toDateTimestamp.add(1, 'days'));
         }
         data = {
           freq: $scope.selectCtrl.pandaFreq,
@@ -1141,7 +1141,7 @@ angular.module('emission.main.metrics',['nvd3',
       closeLabel: $translate.instant('list-datepicker-close'),  //Optional
       setLabel: $translate.instant('list-datepicker-set'),  //Optional
       titleLabel: $translate.instant('metrics.pick-a-date'),
-      mondayFirst: false,
+      mondayFirst: moment().isoWeekday('Monday').day() === 0,
       weeksList: moment.weekdaysMin(),
       monthsList: moment.monthsShort(),
       templateType: 'popup',
@@ -1159,7 +1159,7 @@ angular.module('emission.main.metrics',['nvd3',
       closeLabel: $translate.instant('list-datepicker-close'),  //Optional
       setLabel: $translate.instant('list-datepicker-set'),  //Optional
       titleLabel: $translate.instant('metrics.pick-a-date'),
-      mondayFirst: false,
+      mondayFirst: moment().isoWeekday('Monday').day() === 0,
       weeksList: moment.weekdaysMin(),
       monthsList: moment.monthsShort(),
       templateType: 'popup',
