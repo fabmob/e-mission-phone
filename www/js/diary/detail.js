@@ -83,7 +83,7 @@ angular.module('emission.main.diary.detail',['ui-leaflet', 'ng-walkthrough',
     // ti = time index
     for (var ti in $scope.tripgj.sections[s].properties.times) {
       totalTime = ($scope.tripgj.sections[s].properties.times[ti] - start_ts);
-      data.push({x: totalTime, y: $scope.tripgj.sections[s].properties.speeds[ti] });
+      data.push({x: totalTime, y: $scope.tripgj.sections[s].properties.speeds[ti] * 3.6 });
     }
   }
   var dataset = {
@@ -92,7 +92,7 @@ angular.module('emission.main.diary.detail',['ui-leaflet', 'ng-walkthrough',
       color: '#7777ff',
     }
   var chart = nv.models.lineChart()
-                .margin({left: 65, right: 10})  //Adjust chart margins to give the x-axis some breathing room.
+                .margin({left: 65, right: 35})  //Adjust chart margins to give the x-axis some breathing room.
                 .useInteractiveGuideline(false)  //We want nice looking tooltips and a guideline!
                 .x(function(t) {return t.x / 60})
                 .showLegend(true)       //Show the legend, allowing users to turn on/off line series.
@@ -103,7 +103,7 @@ angular.module('emission.main.diary.detail',['ui-leaflet', 'ng-walkthrough',
     .axisLabel($translate.instant('details.time') + ' (mins)');
 
   chart.yAxis     //Chart y-axis settings
-      .axisLabel($translate.instant('details.speed') + ' (m/s)')
+      .axisLabel($translate.instant('details.speed') + ' (km/h)')
       .tickFormat(d3.format('.1f'));
 
   d3.select('#chart svg')    //Select the <svg> element you want to render the chart in.
@@ -162,7 +162,7 @@ angular.module('emission.main.diary.detail',['ui-leaflet', 'ng-walkthrough',
   }
 
   $scope.$on('$ionicView.afterEnter', function(ev) {
-    // Workaround from 
+    // Workaround from
     // https://github.com/driftyco/ionic/issues/3433#issuecomment-195775629
     if(ev.targetScope !== $scope)
       return;

@@ -1077,7 +1077,8 @@ angular.module('emission.main.metrics',['nvd3',
     "BUS": "ion-android-bus",
     "LIGHT_RAIL":"lightrail fas fa-subway",
     "TRAIN": "ion-android-train",
-    "TRAM": "fas fa-tram",
+    // "TRAM": "fas fa-tram",
+    "TRAM": "mdi mdi-tram-side",
     "SUBWAY":"fas fa-subway",
     "UNKNOWN": "ion-ios-help",
     "AIR_OR_HSR": "ion-plane"}
@@ -1207,5 +1208,11 @@ angular.module('emission.main.metrics',['nvd3',
         return ($scope.expandedc)? "expanded-calorie-card" : "small-calorie-card";
   }
 
-
+  $scope.getLocalizedTripMode = function(key) {
+    var mode = $translate.instant('tracemob.metrics.modes.' + key);
+    if (mode === 'tracemob.metrics.modes.' + key) {
+      return key;
+    }
+    return mode;
+  }
 });

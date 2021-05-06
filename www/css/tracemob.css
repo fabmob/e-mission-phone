@@ -422,3 +422,17 @@ ul.ul-circle > li:before {
 .consent-button {
   height: 35px;
 }
+
+.small-footprint-card {
+  height: 134px !important;
+}
+.user-carbon-no-percentage {
+  padding-bottom: 40px!important;
+}
+
+.small-calorie-card {
+  height: 114px !important;
+}
+.user-calorie-no-percentage {
+  padding-bottom: 30px;
+}
