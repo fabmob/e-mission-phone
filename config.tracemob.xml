@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="16" id="com.fabmob.tracemob" ios-CFBundleVersion="0.0.2" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="17" id="com.fabmob.tracemob" ios-CFBundleVersion="0.0.3" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TraceMob</name>
     <description>A open source personal mobility tracking software</description>
     <author email="info@tracemob.com" href="https://tracemob.com">TraceMob Team</author>
@@ -14,6 +14,7 @@
     <preference name="emSensorDataCollectionProtocolApprovalDate" value="2016-07-14" />
     <preference name="GradlePluginGoogleServicesEnabled" value="false" />
     <preference name="GradlePluginGoogleServicesVersion" value="4.3.3" />
+    <preference name="cordova.plugins.diagnostic.modules" value="LOCATION WIFI" />
     <config-file parent="/manifest/application" target="AndroidManifest.xml">
         <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
         <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
@@ -28,9 +29,6 @@
     </config-file>
     <config-file parent="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS" target="*-Info.plist">
         <false />
-    </config-file>
-    <config-file parent="NSBluetoothAlwaysUsageDescription" target="*-Info.plist">
-        <string>Need access to detect user's position so as to have location of registrations made</string>
     </config-file>
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
