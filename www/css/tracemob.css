@@ -445,16 +445,18 @@ ul.ul-circle > li:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 30px 15px;
+  margin: 30px 15px 0 15px;
 }
 .tracemob-main-date-range > * {
   display: flex;
   padding: 0;
+  border: 0;
 }
 
-.tracemob-main-date-range > div {
-  padding: 0;
+.tracemob-main-date-range > button > div {
+  padding: 0 5px;
 }
+
 #get-metrics-helper-button {
   background: var(--tracemob-color-blue-a);
   color: white;
@@ -465,4 +467,9 @@ ul.ul-circle > li:before {
   padding: 0;
   align-items: center;
   justify-content: center;
+}
+
+.tracemob-main-date-range + p {
+  text-align: center;
+  margin-bottom: 25px;
 }

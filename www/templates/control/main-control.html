@@ -84,21 +84,27 @@
           <i class="ion-trash-b"></i>
         </div>
       </div>
-
+      <div class="control-list-item" ng-show="userDataSaved()">
+          <div class="control-list-text" translate>{{'tracemob.control.calorie-data'}}</div>
+          <div ng-click="toggleUserData()" class="control-icon-button">
+            <i ng-class="getUserDataExpandButtonClass()" id="userDataButton"></i>
+          </div>
+      </div>
       <!-- Begin user data -->
-      <!-- <div class="" ng-show="userDataExpanded()">
-        <div class="control-list-item">
-          <div class="control-list-text" translate>{{'.erase-data'}}</div>
-          <div ng-click="eraseUserData()" id="gray" class=" control-icon-button"><i class="ion-trash-b"></i></div>
-        </div>
+      <div class="" ng-show="userDataExpanded()">
         <ion-list>
-
-            <ion-item class="row" ng-repeat="entry in userData">
-                  <div class="col timestamp item-text-wrap control-info">{{entry.key}}</div>
-                  <div class="col detail item-text-wrap" style="padding: 2px 4px !important;"> {{entry.value}}</div>
-            </ion-item>
+          <ion-item class="row" ng-repeat="entry in userData">
+            <div class="col timestamp item-text-wrap control-info" style="padding: 2px 4px !important;">{{getLocalizedUserDataEntry(entry.key)}}</div>
+            <div class="col detail item-text-wrap" style="padding: 2px 4px !important;"> {{entry.value}}</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col timestamp item-text-wrap control-info" style="padding: 2px 4px !important;" translate>{{'tracemob.control.calorie-erase-data'}}</div>
+            <div ng-click="eraseUserData()" id="gray" class="col col-10 detail item-text-wrap control-icon-button" style="padding: 2px 4px !important;">
+              <i class="ion-trash-b"></i>
+            </div>
+          </ion-item>
         </ion-list>
-      </div> -->
+      </div>
 
       <!-- <div class="control-list-item">
         <div class="control-list-text" translate>{{'tracemob.dev-zone'}}</div>

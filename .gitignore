@@ -31,3 +31,6 @@ GoogleService-Info.plist
 google-services.json
 setup/tracemob/GoogleService-Info.plist
 setup/tracemob/google-services.json
+locales/
+www/i18n/
+!www/i18n/en.json

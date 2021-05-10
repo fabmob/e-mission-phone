@@ -309,6 +309,8 @@
             "sync-to-cozy-cloud": "Synchronize to Cozy Cloud",
             "view-privacy": "View Privacy Policy",
             "erase-data": "Delete my account and my data",
+            "calorie-data": "Data for calories calculation",
+            "calorie-erase-data": "Delete these data",
             "dev-zone": "Technical zone"
         },
         "general-settings": {
@@ -352,6 +354,8 @@
             "ok": "OK"
         },
         "metrics": {
+            "day": "day",
+            "days": "days",
             "distance": "Distances",
             "trips": "Trips",
             "duration": "Durations",

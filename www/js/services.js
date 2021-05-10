@@ -556,7 +556,7 @@ angular.module('emission.services', ['emission.plugin.logger',
     }
   };
 
-  var defaultCarbonDatasetCode = 'US';
+  var defaultCarbonDatasetCode = 'FR';
   var currentCarbonDatasetCode = defaultCarbonDatasetCode;
 
   // we need to call the method from within a promise in initialize()

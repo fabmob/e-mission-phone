@@ -1215,4 +1215,14 @@ angular.module('emission.main.metrics',['nvd3',
     }
     return mode;
   }
+  $scope.getDiffDateInDays = function(date1, date2) {
+    var days = moment(date2).diff(date1, 'days') + 1;
+    if (days < 1) {
+      days = 0;
+    }
+    if (days == 1) {
+      return days + ' ' + $translate.instant('tracemob.metrics.day');
+    }
+    return days + ' ' + $translate.instant('tracemob.metrics.days');
+  }
 });

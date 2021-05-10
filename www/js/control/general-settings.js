@@ -499,6 +499,11 @@ angular.module('emission.main.control',['emission.services',
         //     $ionicPopup.alert({template: $translate.instant('general-settings.user-data-erased')});
         // });
     }
+    $scope.eraseUserCalorieData = function() {
+        CalorieCal.delete().then(function() {
+            $ionicPopup.alert({template: $translate.instant('general-settings.user-data-erased')});
+        });
+    }
     $scope.parseState = function(state) {
         if (state) {
             if($scope.isAndroid()){
@@ -804,6 +809,13 @@ angular.module('emission.main.control',['emission.services',
         $scope.france = err;
     });
 
+    $scope.getLocalizedUserDataEntry = function(key) {
+        var userKeyText = $translate.instant('user-' + key);
+        if (userKeyText === 'user-' + key) {
+            return key;
+        }
+        return userKeyText;
+    }
 
     $scope.linkWithCozyCloud = function () {
         console.log('linkWithCozyCloud');

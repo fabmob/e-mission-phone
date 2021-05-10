@@ -37,6 +37,7 @@
         </button>
         <button id="get-metrics-helper-button" class="button" ng-click="getMetricsHelper()" translate>{{'tracemob.main-metrics.ok'}}</button>
     </div>
+    <p ng-if="uictrl.showRange">({{ getDiffDateInDays(datepickerObjFrom.inputDate, datepickerObjTo.inputDate) }})</p>
     <!-- <div ng-if="uictrl.showSummary" style="width:100%; float:right;">
       <div class="metric-change-data-button hvcenter" ng-click="openModal()" translate>{{'.change-data'}}</div>
     </div>
