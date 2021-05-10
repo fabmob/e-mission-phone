@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="14" id="com.fabmob.tracemob" ios-CFBundleVersion="0.0.3" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="16" id="com.fabmob.tracemob" ios-CFBundleVersion="0.0.2" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TraceMob</name>
     <description>A open source personal mobility tracking software</description>
     <author email="info@tracemob.com" href="https://tracemob.com">TraceMob Team</author>
@@ -28,6 +28,9 @@
     </config-file>
     <config-file parent="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS" target="*-Info.plist">
         <false />
+    </config-file>
+    <config-file parent="NSBluetoothAlwaysUsageDescription" target="*-Info.plist">
+        <string>Need access to detect user's position so as to have location of registrations made</string>
     </config-file>
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
