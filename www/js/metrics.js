@@ -389,8 +389,8 @@ angular.module('emission.main.metrics',['nvd3',
           var tempTo = moment2Timestamp(moment().utc().startOf('day').subtract(1, 'days'))
           lastTwoWeeksQuery = false; // Only get last week's data once
         } else {
-          var tempFrom = moment2Timestamp($scope.selectCtrl.fromDateTimestamp);
-          var tempTo = moment2Timestamp($scope.selectCtrl.toDateTimestamp.add(1, 'days'));
+          var tempFrom = moment2Timestamp($scope.selectCtrl.fromDateTimestamp.set({'hour': 0, 'minute': 0, 'second': 0}));
+          var tempTo = moment2Timestamp($scope.selectCtrl.toDateTimestamp.set({'hour': 23, 'minute': 59, 'second': 59}));
         }
         data = {
           freq: $scope.selectCtrl.pandaFreq,
@@ -1216,7 +1216,11 @@ angular.module('emission.main.metrics',['nvd3',
     return mode;
   }
   $scope.getDiffDateInDays = function(date1, date2) {
-    var days = moment(date2).diff(date1, 'days') + 1;
+    console.log('getDiffDateInDays date1=' + date1 + ' date2=' + date2);
+    // var mDate1 = moment(date1).set({'hour': 0, 'minute': 0, 'second': 0});
+    // var mDate2 = moment(date2).set({'hour': 23, 'minute': 59, 'second': 59});
+    var days = moment(date2).diff(date1, 'days');
+
     if (days < 1) {
       days = 0;
     }
