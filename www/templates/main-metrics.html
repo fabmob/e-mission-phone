@@ -22,6 +22,7 @@
       <div class="metric-change-data-button hvcenter" ng-click="openModal()" translate>{{'.change-data'}}</div>
     </div> -->
     <div ng-if="uictrl.showRange" class="tracemob-main-date-range">
+        <div translate>{{'tracemob.main-metrics.from'}}</div>
         <button id="date-picker-button" ng-click="pickFromDay()">
           <div class="metric-datepicker">
             {{datepickerObjFrom.inputDate | date:datepickerObjFrom.dateFormat}}
@@ -37,7 +38,7 @@
         </button>
         <button id="get-metrics-helper-button" class="button" ng-click="getMetricsHelper()" translate>{{'tracemob.main-metrics.ok'}}</button>
     </div>
-    <p ng-if="uictrl.showRange">({{ getDiffDateInDays(datepickerObjFrom.inputDate, datepickerObjTo.inputDate) }})</p>
+    <p ng-if="uictrl.showRange">{{diffDateInDays}}</p>
     <!-- <div ng-if="uictrl.showSummary" style="width:100%; float:right;">
       <div class="metric-change-data-button hvcenter" ng-click="openModal()" translate>{{'.change-data'}}</div>
     </div>

@@ -389,8 +389,9 @@ angular.module('emission.main.metrics',['nvd3',
           var tempTo = moment2Timestamp(moment().utc().startOf('day').subtract(1, 'days'))
           lastTwoWeeksQuery = false; // Only get last week's data once
         } else {
-          var tempFrom = moment2Timestamp($scope.selectCtrl.fromDateTimestamp.set({'hour': 0, 'minute': 0, 'second': 0}));
+          var tempFrom = moment2Timestamp($scope.selectCtrl.fromDateTimestamp);
           var tempTo = moment2Timestamp($scope.selectCtrl.toDateTimestamp.set({'hour': 23, 'minute': 59, 'second': 59}));
+          console.log('@LOG setMetrics tempFrom=' + tempFrom + ' tempTo=' + tempTo);
         }
         data = {
           freq: $scope.selectCtrl.pandaFreq,
@@ -1037,8 +1038,9 @@ angular.module('emission.main.metrics',['nvd3',
       }
     }
     var initSelect = function() {
-      var now = moment().utc();
-      var weekAgoFromNow = moment().utc().subtract(7, 'd');
+      var now = moment().utc().set({'hour': 0, 'minute': 0, 'second': 0});
+      var weekAgoFromNow = now.clone().subtract(6, 'd');
+      // console.log('@LOG initSelect now=' + now.format() + ' weekAgoFromNow=' + weekAgoFromNow.format());
       $scope.selectCtrl.freq = 'DAILY';
       $scope.selectCtrl.freqString = $translate.instant('metrics.freqoptions-daily');
       $scope.selectCtrl.pandaFreq = 'D';
@@ -1085,23 +1087,47 @@ angular.module('emission.main.metrics',['nvd3',
     return icons[key];
   }
 
+  $scope.diffDateInDays = '';
+  var setDiffDateInDays = function() {
+    var date1 = moment.utc($scope.selectCtrl.fromDateTimestamp);
+    var date2 = moment.utc($scope.selectCtrl.toDateTimestamp).set({'hour': 23});
+    // console.log('@LOG getDiffDateInDays date1=' + date1.format() + ' date2=' + date2.format());
+    var days = moment(date2).diff(date1, 'days') + 1;
+    // console.log('@LOG getDiffDateInDays diff=' + days);
+    if (days < 1) {
+      // console.log('@LOG getDiffDateInDays innerHTML 0');
+      $scope.diffDateInDays = '';
+    }
+    else if (days == 1) {
+      // console.log('@LOG getDiffDateInDays innerHTML 1');
+      $scope.diffDateInDays = days + ' ' + $translate.instant('tracemob.metrics.day');
+    }
+    else {
+      // console.log('@LOG getDiffDateInDays innerHTML 2');
+      $scope.diffDateInDays = days + ' ' + $translate.instant('tracemob.metrics.days');
+    }
+  };
+
+
   $scope.setCurDayFrom = function(val) {
+    // console.log('@LOG setCurDayFrom=' + moment(val).format());
     if (val) {
-      $scope.selectCtrl.fromDateTimestamp = moment(val).utc();
+      $scope.selectCtrl.fromDateTimestamp = moment(val).add(moment().utcOffset(), 'minutes').utc();
       $scope.datepickerObjFrom.inputDate = $scope.selectCtrl.fromDateTimestamp.toDate();
     } else {
       $scope.datepickerObjFrom.inputDate = $scope.selectCtrl.fromDateTimestamp.toDate();
     }
-
+    setDiffDateInDays();
   };
   $scope.setCurDayTo = function(val) {
+    // console.log('@LOG setCurDayTo=' + moment(val).format());
     if (val) {
-      $scope.selectCtrl.toDateTimestamp = moment(val).utc();
+      $scope.selectCtrl.toDateTimestamp = moment(val).add(moment().utcOffset(), 'minutes').utc();
       $scope.datepickerObjTo.inputDate = $scope.selectCtrl.toDateTimestamp.toDate();
     } else {
       $scope.datepickerObjTo.inputDate = $scope.selectCtrl.toDateTimestamp.toDate();
     }
-
+    setDiffDateInDays();
   };
 
 
@@ -1170,6 +1196,7 @@ angular.module('emission.main.metrics',['nvd3',
       closeOnSelect: false,
       // add this instruction if you want to exclude a particular weekday, e.g. Saturday  disableWeekdays: [6]
     };
+  setDiffDateInDays();
 
   $scope.pickFromDay = function() {
     ionicDatePicker.openDatePicker($scope.datepickerObjFrom);
@@ -1214,19 +1241,5 @@ angular.module('emission.main.metrics',['nvd3',
       return key;
     }
     return mode;
-  }
-  $scope.getDiffDateInDays = function(date1, date2) {
-    console.log('getDiffDateInDays date1=' + date1 + ' date2=' + date2);
-    // var mDate1 = moment(date1).set({'hour': 0, 'minute': 0, 'second': 0});
-    // var mDate2 = moment(date2).set({'hour': 23, 'minute': 59, 'second': 59});
-    var days = moment(date2).diff(date1, 'days');
-
-    if (days < 1) {
-      days = 0;
-    }
-    if (days == 1) {
-      return days + ' ' + $translate.instant('tracemob.metrics.day');
-    }
-    return days + ' ' + $translate.instant('tracemob.metrics.days');
   }
 });

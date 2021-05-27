@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="17" id="com.fabmob.tracemob" ios-CFBundleVersion="0.0.3" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="21" id="com.fabmob.tracemob" ios-CFBundleVersion="0.0.5" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TraceMob</name>
     <description>A open source personal mobility tracking software</description>
     <author email="info@tracemob.com" href="https://tracemob.com">TraceMob Team</author>

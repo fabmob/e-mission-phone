@@ -75,13 +75,14 @@ angular.module('emission.main.control',['emission.services',
         if ($scope.ppp) {
             $scope.ppp.show($event);
         } else {
-            i18nUtils.geti18nFileName("templates/", "intro/sensor_explanation-text", ".html").then((consentFileName) => {
-                $scope.consentTextFile = consentFileName;
-                $ionicPopover.fromTemplateUrl("templates/control/main-consent.html", {scope: $scope}).then((p) => {
-                    $scope.ppp = p;
-                    $scope.ppp.show($event);
-                });
-            }).catch((err) => Logger.displayError("Error while displaying privacy policy", err));
+            cordova.InAppBrowser.open('https://lafabriquedesmobilites.fr/tracemob/CGU', '_system');
+            // i18nUtils.geti18nFileName("templates/", "intro/sensor_explanation-text", ".html").then((consentFileName) => {
+            //     $scope.consentTextFile = consentFileName;
+            //     $ionicPopover.fromTemplateUrl("templates/control/main-consent.html", {scope: $scope}).then((p) => {
+            //         $scope.ppp = p;
+            //         $scope.ppp.show($event);
+            //     });
+            // }).catch((err) => Logger.displayError("Error while displaying privacy policy", err));
         }
     }
 
