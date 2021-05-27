@@ -177,11 +177,11 @@ ion-modal-view > ion-header-bar > button,
 
 /* size */
 #modes.slider {
-  height: 405px !important;
+  height: 305px !important;
 }
 
 #dashboard-bottom.card {
-  height: 400px !important;
+  height: 260px !important;
 }
 
 /* ========== ========== ========== ========== ========== */
