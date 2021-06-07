@@ -34,7 +34,7 @@ angular.module('emission.splash.storedevicesettings', ['emission.plugin.logger',
         .then(StartPrefs.isConsented)
         .then(function(consentState) {
           if (consentState == true) {
-            inactiveUser.check('storedevicesettings').then(function(res) {
+            inactiveUser.check().then(function(res) {
               if (res === true) {
                 storedevicesettings.storeDeviceSettings();
               }

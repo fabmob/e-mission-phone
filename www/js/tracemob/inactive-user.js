@@ -5,7 +5,7 @@ angular.module('emission.tracemob.inactiveUser', [])
   var inactiveUser = {};
   inactiveUser.redirectedToIntro = false;
 
-  inactiveUser.check = function(provider) {
+  inactiveUser.check = function() {
     return new Promise(function(resolve, reject) {
       if (inactiveUser.redirectedToIntro !== true) {
         window.cordova.plugins.BEMServerComm.pushGetJSON('/tracemob/checkuuid', function() {},
@@ -51,6 +51,9 @@ angular.module('emission.tracemob.inactiveUser', [])
           function(error) {
           }
         );
+      }
+      else {
+        resolve(false);
       }
     });
   };

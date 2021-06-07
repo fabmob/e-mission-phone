@@ -40,7 +40,7 @@ angular.module('emission.main.metrics',['nvd3',
 
     $ionicPlatform.ready(function() {
         CarbonDatasetHelper.loadCarbonDatasetLocale().then(function(result) {
-          inactiveUser.check('metrics').then(function(res) {
+          inactiveUser.check().then(function(res) {
             if (res === true) {
               getData();
             }
@@ -1072,7 +1072,12 @@ angular.module('emission.main.metrics',['nvd3',
 
   $scope.doRefresh = function() {
     first = true;
-    getMetrics();
+    if (theMode === '') {
+      getData();
+    }
+    else {
+      getMetrics();
+    }
   }
 
   $scope.modeIcon = function(key) {

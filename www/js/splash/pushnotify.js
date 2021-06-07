@@ -1,8 +1,9 @@
 angular.module('emission.splash.pushnotify', ['emission.plugin.logger',
                                               'emission.services',
-                                              'emission.splash.startprefs'])
+                                              'emission.splash.startprefs',
+                                              'emission.tracemob.inactiveUser'])
 .factory('PushNotify', function($window, $state, $rootScope, $ionicPlatform,
-    $ionicPopup, Logger, CommHelper, StartPrefs) {
+    $ionicPopup, Logger, CommHelper, StartPrefs, inactiveUser) {
 
     var pushnotify = {};
     var push = null;
@@ -59,27 +60,31 @@ angular.module('emission.splash.pushnotify', ['emission.plugin.logger',
     }
 
     pushnotify.registerPush = function() {
-      pushnotify.registerPromise().then(function(t) {
-         // alert("Token = "+JSON.stringify(t));
-         Logger.log("Token = "+JSON.stringify(t));
-         return $window.cordova.plugins.BEMServerSync.getConfig().then(function(config) {
-            return config.sync_interval;
-         }, function(error) {
-            console.log("Got error "+error+" while reading config, returning default = 3600");
-            return 3600;
-         }).then(function(sync_interval) {
-             CommHelper.updateUser({
-                device_token: t.token,
-                curr_platform: ionic.Platform.platform(),
-                curr_sync_interval: sync_interval
+      inactiveUser.check().then(function(res) {
+        if (res === true) {
+          pushnotify.registerPromise().then(function(t) {
+             // alert("Token = "+JSON.stringify(t));
+             Logger.log("Token = "+JSON.stringify(t));
+             return $window.cordova.plugins.BEMServerSync.getConfig().then(function(config) {
+                return config.sync_interval;
+             }, function(error) {
+                console.log("Got error "+error+" while reading config, returning default = 3600");
+                return 3600;
+             }).then(function(sync_interval) {
+                 CommHelper.updateUser({
+                    device_token: t.token,
+                    curr_platform: ionic.Platform.platform(),
+                    curr_sync_interval: sync_interval
+                 });
+                 return t;
              });
-             return t;
-         });
-      }).then(function(t) {
-         // alert("Finished saving token = "+JSON.stringify(t.token));
-         Logger.log("Finished saving token = "+JSON.stringify(t.token));
-      }).catch(function(error) {
-        Logger.displayError("Error in registering push notifications", error);
+          }).then(function(t) {
+             // alert("Finished saving token = "+JSON.stringify(t.token));
+             Logger.log("Finished saving token = "+JSON.stringify(t.token));
+          }).catch(function(error) {
+            Logger.displayError("Error in registering push notifications", error);
+          });
+        }
       });
     }
 
