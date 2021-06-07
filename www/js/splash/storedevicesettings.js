@@ -1,8 +1,9 @@
 angular.module('emission.splash.storedevicesettings', ['emission.plugin.logger',
                                              'emission.services',
-                                             'emission.splash.startprefs'])
+                                             'emission.splash.startprefs',
+                                             'emission.tracemob.inactiveUser'])
 .factory('StoreDeviceSettings', function($window, $state, $rootScope, $ionicPlatform,
-    $ionicPopup, $translate, Logger, CommHelper, StartPrefs) {
+    $ionicPopup, $translate, Logger, CommHelper, StartPrefs, inactiveUser) {
 
     var storedevicesettings = {};
 
@@ -33,7 +34,11 @@ angular.module('emission.splash.storedevicesettings', ['emission.plugin.logger',
         .then(StartPrefs.isConsented)
         .then(function(consentState) {
           if (consentState == true) {
-              storedevicesettings.storeDeviceSettings();
+            inactiveUser.check('storedevicesettings').then(function(res) {
+              if (res === true) {
+                storedevicesettings.storeDeviceSettings();
+              }
+            });
           } else {
             Logger.log("no consent yet, waiting to store device settings in profile");
           }

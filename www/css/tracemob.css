@@ -4,6 +4,7 @@
   --tracemob-color-blue-f: #375c9d;
   --tracemob-color-green-b: #ececec;
   --tracemob-color-yellow-o: #ffe000;
+  --tracemob-color-green: #33cd5f;
 }
 
 /* ========== ========== ========== ========== ========== */
@@ -472,4 +473,19 @@ ul.ul-circle > li:before {
 .tracemob-main-date-range + p {
   text-align: center;
   margin-bottom: 25px;
+}
+
+.tracemob-popup > .popup {
+    width: 95%;
+    max-width: 375px;
+}
+
+.tracemob-popup > .popup ul {
+  list-style: disc;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.tracemob-popup > .popup .bold {
+  font-weight: 700;
 }

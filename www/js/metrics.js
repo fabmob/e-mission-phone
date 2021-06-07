@@ -5,14 +5,15 @@ angular.module('emission.main.metrics',['nvd3',
                                         'ionic-datepicker',
                                         'emission.main.metrics.factory',
                                         'emission.plugin.kvstore',
-                                        'emission.plugin.logger'])
+                                        'emission.plugin.logger',
+                                        'emission.tracemob.inactiveUser'])
 
 .controller('MetricsCtrl', function($scope, $ionicActionSheet, $ionicLoading,
                                     CommHelper, $window, $ionicPopup,
                                     ionicDatePicker, $ionicPlatform,
                                     FootprintHelper, CalorieCal, $ionicModal, $timeout, KVStore, CarbonDatasetHelper,
                                     $rootScope, $location, $state, ReferHelper, Logger,
-                                    $translate) {
+                                    $translate, inactiveUser) {
     var lastTwoWeeksQuery = true;
     var first = true;
     var lastWeekCalories = 0;
@@ -39,7 +40,11 @@ angular.module('emission.main.metrics',['nvd3',
 
     $ionicPlatform.ready(function() {
         CarbonDatasetHelper.loadCarbonDatasetLocale().then(function(result) {
-          getData();
+          inactiveUser.check('metrics').then(function(res) {
+            if (res === true) {
+              getData();
+            }
+          });
         });
         $scope.onCurrentTrip();
     });

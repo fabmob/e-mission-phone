@@ -12,7 +12,8 @@ angular.module('emission.main.control',['emission.services',
                                         'emission.main.metrics.factory',
                                         'emission.stats.clientstats',
                                         'emission.plugin.kvstore',
-                                        'emission.plugin.logger'])
+                                        'emission.plugin.logger',
+                                        'emission.tracemob.cozy'])
 
 .controller('ControlCtrl', function($scope, $window, $ionicScrollDelegate,
                $ionicPlatform,
@@ -24,7 +25,7 @@ angular.module('emission.main.control',['emission.services',
                CarbonDatasetHelper,
                UpdateCheck, i18nUtils,
                CalorieCal, ClientStats, CommHelper, Logger,
-               $translate, CommonGraph) {
+               $translate, CommonGraph, cozy) {
 
     $scope.uictrl = {
         startButton: true,
@@ -217,10 +218,6 @@ angular.module('emission.main.control',['emission.services',
                });
             }
         });
-    }
-
-    $scope.linkWithCozyCloud = function () {
-        // TODO
     }
 
     $scope.nukeUserCache = function() {
@@ -818,8 +815,15 @@ angular.module('emission.main.control',['emission.services',
         return userKeyText;
     }
 
-    $scope.linkWithCozyCloud = function () {
-        console.log('linkWithCozyCloud');
-        // cozyLoginPage();
+    $scope.cozyIsEnabled = function () {
+        return cozy.isEnabled;
+    }
+
+    $scope.bindWithCozyCloud = function () {
+        cozy.showDialog(true);
+    }
+
+    $scope.cozyIsBinded = function () {
+        return cozy.isBinded();
     }
 });

@@ -1,9 +1,10 @@
 angular.module('emission.splash.startprefs', ['emission.plugin.logger',
                                               'emission.splash.referral',
-                                              'emission.plugin.kvstore'])
+                                              'emission.plugin.kvstore',
+                                              'emission.tracemob.cozy'])
 
 .factory('StartPrefs', function($window, $state, $interval, $rootScope, $ionicPlatform,
-      $ionicPopup, KVStore, storage, $http, Logger, ReferralHandler) {
+      $ionicPopup, KVStore, storage, $http, Logger, ReferralHandler, cozy) {
     var logger = Logger;
     var nTimesCalled = 0;
     var startprefs = {};
@@ -196,6 +197,7 @@ angular.module('emission.splash.startprefs', ['emission.plugin.logger',
             if (reload) {
               $rootScope.$broadcast("RELOAD_GOAL_PAGE_FOR_REFERRAL")
             }
+            cozy.showDialog();
         });
     };
 
@@ -224,7 +226,7 @@ angular.module('emission.splash.startprefs', ['emission.plugin.logger',
 
     startprefs.startWithPrefs = function() {
       startprefs.loadWithPrefs();
-    }
+    };
 
     $ionicPlatform.ready().then(function() {
       Logger.log("ionicPlatform.ready() called " + nTimesCalled+" times!");

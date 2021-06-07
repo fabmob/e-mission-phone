@@ -307,7 +307,7 @@
             "start-trip": "Start Trip",
             "stop-trip": "Stop Trip",
             "tracking": "Tracking",
-            "sync-to-cozy-cloud": "Synchronize to Cozy Cloud",
+            "bind-with-cozy-cloud": "Bind with my Cozy account",
             "view-privacy": "View Privacy Policy",
             "erase-data": "Delete my account and my data",
             "calorie-data": "Data for calories calculation",
@@ -379,6 +379,22 @@
         "diary": {
             "select-mode-scroll": "👇 Scroll for more 👇",
             "select-purpose-scroll": "👇 Scroll for more 👇"
+        },
+        "cozy": {
+            "text-1": "Vos données sont perdues en cas de :",
+            "list-1": "suppression de l'application,",
+            "list-2": "ou de suppression des données de l'application,",
+            "list-3": "ou de non-utilisation de l'application pendant 30 jours consécutifs.",
+            "text-2": "Pour conserver vos données, lier TraceMob à un compte Cozy.",
+            "text-3": "Vous pouvez le faire plus tard depuis la page profil.",
+            "bind": "Lier",
+            "later": "Plus tard"
+        },
+        "inactiveUser": {
+            "title": "Données supprimées",
+            "text-1": "TraceMob n'a pas été utilisée pendant au moins 30 jours consécutifs.",
+            "text-2": "Comme précisé dans les conditions générales d'utilisation, toutes les données récupérées par TraceMob ont été supprimés.",
+            "text-3": "Vous pouvez à nouveau utiliser TraceMob en acceptant les C.G.U."
         }
     }
 }
