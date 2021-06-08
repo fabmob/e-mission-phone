@@ -24,9 +24,9 @@
         -->
         <div ng-if="data.displayTrips.length == 0" style="background-color: transparent;" id="no-border" class="list-item" item-height="'400px'">
                <div ng-if="data.displayTrips.length == 0" style="position: absolute; top: 15px; left: 19%; right: 19%; text-align: center;">
-                 <h3>{{'diary.no-trips-found' | translate}}</h3>
-                 <h3 ng-if="filterInputs.unlabeled || filterInputs.invalid">{{'diary.for-current-filter' | translate }}</h3>
-                 <h3 ng-if="!infScrollControl.reachedEnd">{{'diary.scroll-to-load-more' | translate }}</h3>
+                 <h4>{{'diary.no-trips-found' | translate}}</h4>
+                 <h4 ng-if="filterInputs.unlabeled || filterInputs.invalid">{{'diary.for-current-filter' | translate }}</h4>
+                 <h4 ng-if="!infScrollControl.reachedEnd">{{'diary.scroll-to-load-more' | translate }}</h4>
                </div>
          </div>
 

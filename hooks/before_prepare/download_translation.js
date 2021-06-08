@@ -37,23 +37,15 @@ module.exports = function (context) {
         }
     }
 
-    var url = jsonData.url;
-    var branch = jsonData.branch;
-    if (branch) {
-        url = "-b " + branch + " " + url;
-    }
-    else {
-        branch = "";
-    }
     if (!fs.existsSync(localesFolder)) {
-        console.log(LOG_NAME + "I will clone from " + url);
-        child_process.execSync('git clone ' + url + ' ' + localesFolder, { 'timeout': 10000, 'stdio': 'inherit'});
-    } else {
+        var url = jsonData.url;
+        var branch = jsonData.branch;
         if (branch) {
-            branch = " origin " + branch;
+            url = "-b " + branch + " " + url;
         }
-        console.log(LOG_NAME + "I will pull branch " + branch);
-        child_process.execSync('git clean -fd', { 'cwd': localesFolder, 'timeout': 10000, 'stdio': 'inherit' });
-        child_process.execSync('git pull' + branch, { 'cwd': localesFolder, 'timeout': 10000, 'stdio': 'inherit' });
+        console.log(LOG_NAME + "I will clone from " + url);
+        child_process.execSync('git clone ' + url + ' ' + localesFolder, { 'timeout': 10000, 'stdio': 'inherit' });
+    } else {
+        child_process.execSync('git pull', { 'cwd': localesFolder, 'timeout': 10000, 'stdio': 'inherit' });
     }
 }
