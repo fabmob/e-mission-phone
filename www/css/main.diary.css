@@ -46,7 +46,7 @@
   and (min-device-width: 320px) 
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2) {
-    .angular-leaflet-map { height: 150px; width: 245px; }
+    /*.angular-leaflet-map { height: 150px; width: 245px; }*/
 }
 
 /* ----------- iPhone 6 ----------- */
@@ -56,7 +56,7 @@
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
-    .angular-leaflet-map { height: 150px; width: 295px; }
+    /*.angular-leaflet-map { height: 150px; width: 295px; }*/
 }
 
 /* ----------- iPhone 6+ ----------- */
@@ -66,7 +66,7 @@
   and (min-device-width: 414px) 
   and (max-device-width: 736px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
-    .angular-leaflet-map { height: 150px; width: 330px; }
+    /*.angular-leaflet-map { height: 150px; width: 330px; }*/
 }
 
 

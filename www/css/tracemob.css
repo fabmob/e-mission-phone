@@ -188,31 +188,9 @@ ion-modal-view > ion-header-bar > button,
 /* ========== ========== ========== ========== ========== */
 /* main.diary.css */
 /* ========== ========== ========== ========== ========== */
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-  .angular-leaflet-map {
-    width: 269px !important;
-  }
+.angular-leaflet-map {
+  margin: auto;
 }
-@media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-  .angular-leaflet-map {
-    width: 319px !important;
-  }
-}
-@media only screen
-  and (min-device-width: 414px)
-  and (max-device-width: 736px)
-  and (-webkit-min-device-pixel-ratio: 3) {
-  .angular-leaflet-map {
-    width: 354px !important;
-  }
-}
-
 /* ========== ========== ========== ========== ========== */
 /* popup datepicker */
 /* ========== ========== ========== ========== ========== */
@@ -390,7 +368,9 @@ h4.currently-displaying-header{
   top: 4px;
 }
 
-/* CGU */
+/* ========== ========== ========== ========== ========== */
+/* C.G.U */
+/* ========== ========== ========== ========== ========== */
 ul.ul-dashed > li:before,
 ul.ul-disc > li:before,
 ul.ul-circle > li:before {
@@ -424,6 +404,9 @@ ul.ul-circle > li:before {
   height: 35px;
 }
 
+/* ========== ========== ========== ========== ========== */
+/* TraceMob */
+/* ========== ========== ========== ========== ========== */
 #dashboard-footprint.card {
   margin-top: 0;
 }
@@ -488,4 +471,18 @@ ul.ul-circle > li:before {
 
 .tracemob-popup > .popup .bold {
   font-weight: 700;
+}
+
+.stop-time-tag-inf-scroll,
+.start-time-tag-inf-scroll {
+  height: auto;
+}
+
+.diary-arrow-container {
+  margin:  auto;
+}
+
+.diary-arrow-container > i {
+  font-size: 24px;
+  padding-right: 10px;
 }

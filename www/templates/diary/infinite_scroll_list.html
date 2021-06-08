@@ -23,7 +23,7 @@
         </div>
         -->
         <div ng-if="data.displayTrips.length == 0" style="background-color: transparent;" id="no-border" class="list-item" item-height="'400px'">
-               <div ng-if="data.displayTrips.length == 0" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%);" height="'400px'">
+               <div ng-if="data.displayTrips.length == 0" style="position: absolute; top: 15px; left: 19%; right: 19%; text-align: center;">
                  <h3>{{'diary.no-trips-found' | translate}}</h3>
                  <h3 ng-if="filterInputs.unlabeled || filterInputs.invalid">{{'diary.for-current-filter' | translate }}</h3>
                  <h3 ng-if="!infScrollControl.reachedEnd">{{'diary.scroll-to-load-more' | translate }}</h3>
@@ -62,7 +62,7 @@
                     </div>
                  </div>
                  <div ng-click="showDetail($event, trip)" class="col-10 diary-arrow-container">
-                    <i class="ion-more"></i>
+                    <i class="ion-ios-arrow-right"></i>
                  </div>
              </div>
              <div class="row" style="padding-left: 5px;padding-right: 5px;margin-top: 0px">

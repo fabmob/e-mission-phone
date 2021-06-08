@@ -1,5 +1,5 @@
 {
-    "loading" : "Loading...",
+    "loading": "Loading...",
     "map-refresh": "Refresh",
     "map-fixmap": "Fix Map",
     "pull-to-refresh": "Pull to refresh",
@@ -7,7 +7,7 @@
     "weekdays-all": "All",
     "weekdays-select": "Select day of the week",
 
-    "post-trip-prompt":{
+    "post-trip-prompt": {
         "notification-option-mute": "Mute",
         "notification-option-snooze": "Snooze",
         "notification-option-choose": "Choose",
@@ -50,7 +50,7 @@
     "trip-start-hours": "Start hours",
     "trip-start-duration": "Duration",
 
-    "control":{
+    "control": {
         "profile": "Profile",
         "tracking": "Tracking",
         "medium-accuracy": "Medium accuracy",
@@ -80,13 +80,13 @@
         "transition-notify": "Transition Notify"
     },
 
-    "general-settings":{
-        "choose-date" : "Choose date to download data",
-        "choose-dataset" : "Choose a dataset for carbon footprint calculations",
-        "carbon-dataset" : "Carbon dataset",
-        "nuke-ui-state-only" : "UI state only",
-        "nuke-native-cache-only" : "Native cache only",
-        "nuke-everything" : "Everything",
+    "general-settings": {
+        "choose-date": "Choose date to download data",
+        "choose-dataset": "Choose a dataset for carbon footprint calculations",
+        "carbon-dataset": "Carbon dataset",
+        "nuke-ui-state-only": "UI state only",
+        "nuke-native-cache-only": "Native cache only",
+        "nuke-everything": "Everything",
         "clear-data": "Clear data",
         "cancel": "Cancel",
         "user-data-erased": "User data erased.",
@@ -100,7 +100,7 @@
         "share-url": "https://bic2cal.eecs.berkeley.edu/#download"
     },
 
-    "metrics":{
+    "metrics": {
         "cancel": "Cancel",
         "confirm": "Confirm",
         "get": "Get",
@@ -171,7 +171,7 @@
     "user-weight": "Weight",
     "user-age": "Age",
 
-    "main-metrics":{
+    "main-metrics": {
         "dashboard": "Dashboard",
         "summary": "Summary",
         "chart": "Chart",
@@ -194,32 +194,32 @@
         "equals-bananas": "Equals {bananas, plural, =0{0 bananas} one {1 banana} other {# bananas}}"
     },
 
-    "main-diary" : "Diary",
+    "main-diary": "Diary",
 
-    "main-inf-scroll" : {
+    "main-inf-scroll": {
         "tab": "Label"
     },
 
-    "main-heatmap":{
+    "main-heatmap": {
         "title": "Heatmap",
-        "counts" : "Counts",
-        "stress" : "Stress",
-        "from" : "From:",
-        "to" : "To:",
-        "get" : "Get!",
+        "counts": "Counts",
+        "stress": "Stress",
+        "from": "From:",
+        "to": "To:",
+        "get": "Get!",
         "all": "ALL",
         "none": "NONE",
         "bicycling": "BICYCLING",
         "walking": "WALKING",
         "in-vehicle": "IN_VEHICLE",
-        "select-travel-mode" : "Select travel mode",
+        "select-travel-mode": "Select travel mode",
         "cancel": "Cancel",
         "tour-datepicker": "This heatmap shows the aggregate data for all E-mission users. Select the dates you want to see, and filter by hours of the day (24h format) and days of the week. For example, if you enter 16 and 19 in the last field, and select Monday and Friday, you'll see the Heatmap filtered to show the traffic on weekdays between 4pm and 7pm.",
         "tour-mode": "Click here to filter your results by mode of transportation. The default is to show all modes.",
         "tour-get": "Click here to generate the heatmap."
     },
 
-    "details":{
+    "details": {
         "speed": "Speed",
         "time": "Temps",
         "tour-detail-content": "To report an incident, zoom in as much as possible to the location where the incident occurred and click on the trip to mark a ☻ or ☹ incident",
@@ -231,35 +231,35 @@
     "list-datepicker-today": "Today",
     "list-datepicker-close": "Close",
     "list-datepicker-set": "Set",
-    "list-tour-datepicker-button" : "Use this to select the day you want to see.",
-    "list-tour-diary-entry" : "Click on the map to see more details about each trip.",
-    "list-tour-map-fix-button" : "Use this to fix the map tiles if they have not loaded properly.",
+    "list-tour-datepicker-button": "Use this to select the day you want to see.",
+    "list-tour-diary-entry": "Click on the map to see more details about each trip.",
+    "list-tour-map-fix-button": "Use this to fix the map tiles if they have not loaded properly.",
 
-    "service":{
+    "service": {
         "reading-server": "Reading from server...",
         "reading-cache": "Reading from cache...",
         "reading-unprocessed-data": "Reading unprocessed data..."
     },
 
 
-    "post-trip-manual-incident-time" : "Choose incident time",
+    "post-trip-manual-incident-time": "Choose incident time",
 
-    "email-service":{
+    "email-service": {
         "email-account-not-configured": "Email account is not configured, cannot send email",
         "email-account-mail-app": "You must have the mail app on your phone configured with an email address. Otherwise, this won't work",
         "going-to-email": "Going to email database from {{parentDir}}",
-        "email-log":{
+        "email-log": {
             "subject-logs": "emission logs",
             "body-please-fill-in-what-is-wrong": "please fill in what is wrong"
         },
         "no-email-address-configured": "No email address configured.",
-        "email-data":{
+        "email-data": {
             "subject-data-dump-from-to": "Data dump from {{start}} to {{end}}",
             "body-data-consists-of-list-of-entries": "Data consists of a list of entries.\nEntry formats are at https://github.com/e-mission/e-mission-server/tree/master/emission/core/wrapper \nData can be loaded locally using instructions at https://github.com/e-mission/e-mission-server#loading-test-data \n and can be manipulated using the example at https://github.com/e-mission/e-mission-server/blob/master/Timeseries_Sample.ipynb"
         }
     },
 
-    "upload-service":{
+    "upload-service": {
         "upload-database": "Uploading database {{db}}",
         "upload-from-dir": "from directory {{parentDir}}",
         "upload-to-server": "to servers {{serverURL}}",
@@ -283,11 +283,11 @@
     "allow_background": {
         "samsung": "Disable 'Medium power saving mode'"
     },
-    "consent":{
+    "consent": {
         "button-accept": "I accept",
         "button-decline": "I refuse"
     },
-    "updatecheck":{
+    "updatecheck": {
         "downloading-update": "Downloading UI-only update",
         "extracting-update": "Extracting UI-only update",
         "done": "Update done, reloading...",
@@ -296,7 +296,7 @@
         "download-apply": "Apply"
     },
     "tracemob": {
-        "consent":{
+        "consent": {
             "button-accept": "Accept",
             "button-decline": "Refuse"
         },
@@ -310,9 +310,9 @@
             "tracking": "Tracking",
             "bind-with-cozy-cloud": "Bind with my Cozy account",
             "view-privacy": "View Privacy Policy",
-            "erase-data": "Delete my account and my data",
             "calorie-data": "Data for calories calculation",
             "calorie-erase-data": "Delete these data",
+            "erase-data": "Delete my account and my data",
             "dev-zone": "Technical zone"
         },
         "general-settings": {
@@ -352,8 +352,12 @@
             "user-data-erase": "Your data will be automatically deleted 30 days after you delete the app from your phone. Your data will no longer be recoverable once the application is deleted."
         },
         "main-metrics": {
+            "from": "from",
             "to": "to",
             "ok": "OK"
+        },
+        "trip-detail-popover": {
+            "trip-details": "Trip details"
         },
         "metrics": {
             "day": "day",
