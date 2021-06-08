@@ -486,3 +486,7 @@ ul.ul-circle > li:before {
   font-size: 24px;
   padding-right: 10px;
 }
+
+.trip-details-popover-content > div.scroll {
+  height: 100%;
+}
