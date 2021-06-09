@@ -295,6 +295,10 @@
         "download-not-now": "Not now",
         "download-apply": "Apply"
     },
+    "sensor_explanation": {
+        "button-accept": "OK",
+        "button-decline": "Arrêt"
+    },
     "tracemob": {
         "consent": {
             "button-accept": "Accept",
