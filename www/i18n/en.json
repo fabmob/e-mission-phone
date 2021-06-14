@@ -371,7 +371,7 @@
             "duration": "Durations",
             "median-speed": "Median Speeds",
             "modes": {
-                "AIR_OR_HSR": "Air or HSR",
+                "AIR_OR_HSR": "Air",
                 "BICYCLING": "Bike",
                 "BUS": "Bus",
                 "CAR": "Car",
